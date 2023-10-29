@@ -1,0 +1,118 @@
+<section class="vh-100" style="background-color: rgb(255, 252, 235) ;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-white bg-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+  
+                <form id="signup-form" class="mx-1 mx-md-4" action="/signup" method="post">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" name="Name" id="form3Example1c" class="form-control" />
+                      <label class="form-label"  for="form3Example1c">Your Name</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" name="email" id="form3Example3c" class="form-control" />
+                      <label class="form-label"  for="form3Example3c">Your Email</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" name="password" id="form3Example4c" class="form-control" />
+                      <label class="form-label" for="form3Example4c">Password</label>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn  btn-primary btn-lg">Register</button>
+                  </div>
+
+                  <a class="loginClass d-flex justify-content-center fw-bold"  href="/login">LOGIN</a>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="/images/revolt-164_6wVEHfI-unsplash.jpg"
+                  class="img-fluid " alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+document.getElementById("signup-form").addEventListener("submit", validateForm);
+
+function validateForm(event) {
+  // prevent the form from submitting by default
+  event.preventDefault();
+  
+  // get the form fields
+  const nameField = document.getElementById("form3Example1c");
+  const emailField = document.getElementById("form3Example3c");
+  const passwordField = document.getElementById("form3Example4c");
+  
+  // get the values of the form fields
+  const nameValue = nameField.value.trim();
+  const emailValue = emailField.value.trim();
+  const passwordValue = passwordField.value.trim();
+  
+  // check if the name field is empty
+  if (nameValue === "") {
+    // display an error message
+    nameField.classList.add("is-invalid");
+    nameField.nextElementSibling.innerHTML = "Please enter your name";
+  } else {
+    // remove the error message
+    nameField.classList.remove("is-invalid");
+    nameField.nextElementSibling.innerHTML = "";
+  }
+  
+  // check if the email field is empty and a valid email format
+  if (emailValue === "") {
+    emailField.classList.add("is-invalid");
+    emailField.nextElementSibling.innerHTML = "Please enter your email";
+  } else if (!/\S+@\S+\.\S+/.test(emailValue)) {
+    emailField.classList.add("is-invalid");
+    emailField.nextElementSibling.innerHTML = "Please enter a valid email";
+  } else {
+    emailField.classList.remove("is-invalid");
+    emailField.nextElementSibling.innerHTML = "";
+  }
+  
+  // check if the password field is empty and has at least 8 characters
+  if (passwordValue === "") {
+    passwordField.classList.add("is-invalid");
+    passwordField.nextElementSibling.innerHTML = "Please enter your password";
+  } else if (passwordValue.length < 8) {
+    passwordField.classList.add("is-invalid");
+    passwordField.nextElementSibling.innerHTML = "Password must be at least 8 characters long";
+  } else {
+    passwordField.classList.remove("is-invalid");
+    passwordField.nextElementSibling.innerHTML = "";
+  }
+  
+  // submit the form if all fields are valid
+  if (nameValue !== "" && emailValue !== "" && /\S+@\S+\.\S+/.test(emailValue) && passwordValue !== "" && passwordValue.length >= 8) {
+    event.target.submit();
+  }
+}
+</script>
